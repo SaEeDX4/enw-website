@@ -4,13 +4,38 @@ import config from "./config/config.js";
 import logger from "./utils/logger.js";
 import { connectDB } from "./config/db.js";
 import routes from "./routes/index.js"; // 👈 import the main router
-import cors from "cors"; // ✅ added
+import cors from "cors"; // ✅ CORS
 
 const app = express();
 const PORT = config.port;
 
-// Middleware
-app.use(cors({ origin: "http://localhost:5173" })); // ✅ allow your Vite frontend
+/**
+ * ✅ CORS (prod + local)
+ * - Allows your Render frontend and localhost:5173
+ * - Uses CLIENT_URL from config/env if set
+ * - Handles preflight + common headers
+ */
+const ALLOWED_ORIGINS = [
+  "https://enw-frontend.onrender.com",
+  "http://localhost:5173",
+  config.clientUrl, // optional: if you set CLIENT_URL in env
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin(origin, cb) {
+      // allow non-browser requests (no Origin) and whitelisted origins
+      if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
+      return cb(new Error("CORS not allowed"));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+app.options("*", cors()); // preflight
+
+// Body parser
 app.use(express.json());
 
 // Health check endpoint
@@ -35,6 +60,7 @@ async function startServer() {
     const server = app.listen(PORT, () => {
       logger.info(`🚀 Server running on port ${PORT}`);
       logger.info(`📍 Environment: ${config.env}`);
+      logger.info(`🌐 CORS allowed: ${ALLOWED_ORIGINS.join(", ")}`);
     });
 
     // Graceful shutdown
