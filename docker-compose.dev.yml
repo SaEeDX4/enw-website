@@ -1,0 +1,32 @@
+services:
+  client-dev:
+    image: node:20-alpine
+    working_dir: /app
+    ports:
+      - "5173:5173" # Vite dev server
+    volumes:
+      - ./enw/client:/app
+    command: sh -c "npm ci && npm run dev -- --host 0.0.0.0"
+    environment:
+      - CHOKIDAR_USEPOLLING=1 # reliable file watching on Windows/Docker
+    networks: [enw-network]
+    restart: unless-stopped
+
+  server-dev:
+    image: node:20-alpine
+    working_dir: /app
+    ports:
+      - "3000:3000" # API
+      - "9229:9229" # Node inspector (debug)
+    volumes:
+      - ./enw/server:/app
+    env_file:
+      - .env.production # ok for now; swap to .env.development later if you want
+    # uses Node 20's built-in watcher + inspector
+    command: sh -c "npm ci && node --watch --inspect=0.0.0.0:9229 src/server.js"
+    networks: [enw-network]
+    restart: unless-stopped
+
+networks:
+  enw-network:
+    driver: bridge

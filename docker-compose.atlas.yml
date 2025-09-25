@@ -1,0 +1,35 @@
+services:
+  client:
+    build:
+      context: ./enw/client
+      dockerfile: ../../Dockerfile.client
+    ports:
+      - "80:80"
+    depends_on:
+      server:
+        condition: service_healthy
+    networks:
+      - enw-network
+    restart: unless-stopped
+
+  server:
+    build:
+      context: ./enw/server
+      dockerfile: ../../Dockerfile.server
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    networks:
+      - enw-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  enw-network:
+    driver: bridge
