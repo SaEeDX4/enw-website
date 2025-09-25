@@ -8,13 +8,12 @@ import { useForm } from '../../hooks/useForm';
 import { validationRules } from '../../utils/validation';
 import { useAppContext } from '../../context/AppContext';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3000';
+const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 
 export default function JoinUs() {
   const navigate = useNavigate();
   const { actions } = useAppContext();
 
-  // ✅ include all fields required by Volunteer model
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -23,15 +22,15 @@ export default function JoinUs() {
     age: '',
     address: '',
     occupation: '',
-    skills: '', // single select → mapped to array on submit
-    availability: '', // single select → mapped to array on submit
+    skills: '',
+    availability: '',
     experience: '',
     motivation: '',
     references: '',
     emergencyContact: '',
     emergencyPhone: '',
-    backgroundCheck: false, // model allows false but we’ll require opt-in here
-    consent: false, // required true
+    backgroundCheck: false,
+    consent: false,
   };
 
   const rules = {
@@ -41,7 +40,6 @@ export default function JoinUs() {
     phone: [validationRules.required, validationRules.phone],
     age: [validationRules.required, validationRules.age],
     address: [validationRules.required, validationRules.minLength(10)],
-    // skills must be one of enum; keep simple min length
     skills: [validationRules.required, validationRules.minLength(3)],
     availability: [validationRules.required],
     motivation: [validationRules.required, validationRules.minLength(20)],
@@ -64,7 +62,6 @@ export default function JoinUs() {
     reset,
   } = useForm(initialValues, rules);
 
-  // ✅ skills enum must match backend model
   const skillOptions = [
     { value: 'SHOPPING', label: 'Shopping assistance' },
     { value: 'TRANSPORTATION', label: 'Transportation / driving' },
@@ -85,7 +82,6 @@ export default function JoinUs() {
 
   const onSubmit = async (data) => {
     try {
-      // map single selects → arrays to satisfy schema
       const payload = {
         firstName: (data.firstName || '').trim(),
         lastName: (data.lastName || '').trim(),
@@ -94,7 +90,6 @@ export default function JoinUs() {
         age: data.age ? Number(data.age) : undefined,
         address: (data.address || '').trim(),
         occupation: (data.occupation || '').trim(),
-        // skills enum string → array of enum strings
         skills: data.skills ? [data.skills] : [],
         availability: data.availability ? [data.availability] : [],
         experience: (data.experience || '').trim(),
@@ -106,7 +101,7 @@ export default function JoinUs() {
         consent: !!data.consent,
       };
 
-      const res = await fetch(`${API_BASE}/api/volunteers`, {
+      const res = await fetch(`${API_BASE}/volunteers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -159,7 +154,6 @@ export default function JoinUs() {
               Join Us
             </h2>
 
-            {/* ✅ Correct wiring: handleSubmit returns a function that receives the event */}
             <form onSubmit={handleSubmit(onSubmit)}>
               <div
                 style={{
@@ -393,12 +387,10 @@ export default function JoinUs() {
                 >
                   Cancel
                 </Button>
-                {/* ✅ native form submit is enough */}
                 <Button
                   type="submit"
                   loading={isSubmitting}
                   disabled={isSubmitting}
-                  // FIX: Fallback in case <Button> doesn't forward `type="submit"` to a real <button>
                   onClick={handleSubmit(onSubmit)}
                 >
                   Submit Application

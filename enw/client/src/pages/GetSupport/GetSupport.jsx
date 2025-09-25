@@ -7,7 +7,7 @@ import FormField from '../../components/ui/FormField/FormField';
 import Button from '../../components/ui/Button/Button';
 import Hero from '../../components/ui/Hero/Hero';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3000';
+const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 
 function GetSupport() {
   const navigate = useNavigate();
@@ -64,7 +64,6 @@ function GetSupport() {
     touchField(e.target.name);
   };
 
-  // Descriptive values so validation passes and backend gets meaningful text
   const supportOptions = [
     {
       value: 'Grocery shopping assistance',
@@ -109,13 +108,9 @@ function GetSupport() {
         consent: Boolean(data.consent) === true,
       };
 
-      console.log(
-        '➡️ POST',
-        `${API_BASE}/api/seniors/support-requests`,
-        payload
-      );
+      console.log('➡️ POST', `${API_BASE}/seniors/support-requests`, payload);
 
-      const res = await fetch(`${API_BASE}/api/seniors/support-requests`, {
+      const res = await fetch(`${API_BASE}/seniors/support-requests`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -351,7 +346,7 @@ function GetSupport() {
                   label="I agree to the terms and conditions and consent to background verification of assigned volunteers"
                   name="consent"
                   type="checkbox"
-                  value={formData.consent} // FormField maps checkbox via checked internally
+                  value={formData.consent}
                   onChange={adaptChange}
                   onBlur={adaptBlur}
                   error={errors.consent}

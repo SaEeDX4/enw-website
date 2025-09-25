@@ -7,8 +7,8 @@ import FormField from '../../components/ui/FormField/FormField';
 import Button from '../../components/ui/Button/Button';
 import Hero from '../../components/ui/Hero/Hero';
 
-// FIX: use same API_BASE pattern as other pages
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3000';
+// FIX: production-safe base; Render rewrites /api/* to backend
+const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 
 function BecomePartner() {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ function BecomePartner() {
     reset,
   } = useForm(initialValues, fieldValidationRules);
 
-  // FIX: values uppercased to match server enum in Partner schema
+  // Server-side enum values (uppercase)
   const organizationTypes = [
     { value: 'HEALTHCARE', label: 'Healthcare Provider' },
     { value: 'PHARMACY', label: 'Pharmacy' },
@@ -90,7 +90,6 @@ function BecomePartner() {
     { value: 'ongoing', label: 'Ongoing partnership' },
   ];
 
-  // FIX: real POST to backend (creates collection in Atlas on first success)
   const onSubmit = async (data) => {
     try {
       const payload = {
@@ -99,7 +98,7 @@ function BecomePartner() {
         email: data.email?.trim(),
         phone: data.phone?.trim(),
         website: data.website?.trim(),
-        organizationType: data.organizationType, // already uppercased from options
+        organizationType: data.organizationType,
         address: data.address?.trim(),
         partnershipType: data.partnershipType,
         services: data.services?.trim(),
@@ -112,7 +111,7 @@ function BecomePartner() {
         consent: !!data.consent,
       };
 
-      const res = await fetch(`${API_BASE}/api/partners`, {
+      const res = await fetch(`${API_BASE}/partners`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -137,11 +136,11 @@ function BecomePartner() {
         type: 'success',
         title: 'Partnership Application Submitted!',
         message:
-          'Thank you for your interest in partnering with us. Our partnerships team will review your application and contact you within 3-5 business days.',
+          'Thank you for your interest in partnering with us. Our team will review your application and contact you soon.',
       });
 
       reset();
-      navigate('/partners'); // keep or adjust your redirect
+      navigate('/partners');
     } catch (error) {
       console.error('❌ Partners submit error:', error);
       actions.addNotification({
@@ -179,7 +178,6 @@ function BecomePartner() {
                 Partnership Application Form
               </h2>
 
-              {/* Proper submit wiring + fallback on Button */}
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FormField
                   label="Organization Name"
@@ -416,7 +414,7 @@ function BecomePartner() {
                     type="submit"
                     loading={isSubmitting}
                     disabled={isSubmitting}
-                    onClick={handleSubmit(onSubmit)} // fallback to force validation
+                    onClick={handleSubmit(onSubmit)}
                   >
                     Submit Application
                   </Button>
