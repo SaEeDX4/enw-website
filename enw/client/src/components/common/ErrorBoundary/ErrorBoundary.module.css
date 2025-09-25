@@ -1,0 +1,92 @@
+.errorBoundary {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  background: var(--ink-50);
+}
+
+.errorContent {
+  max-width: 500px;
+  text-align: center;
+  padding: var(--space-8);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--ink-200);
+}
+
+.errorTitle {
+  color: var(--danger-600);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-4);
+}
+
+.errorMessage {
+  color: var(--ink-700);
+  margin-bottom: var(--space-6);
+  line-height: var(--leading-normal);
+}
+
+.errorActions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.retryButton,
+.refreshButton {
+  padding: var(--space-3) var(--space-5);
+  border: none;
+  border-radius: var(--radius);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+}
+
+.retryButton {
+  background: var(--brand-700);
+  color: var(--white);
+}
+
+.retryButton:hover {
+  background: var(--brand-500);
+}
+
+.refreshButton {
+  background: var(--ink-200);
+  color: var(--ink-700);
+}
+
+.refreshButton:hover {
+  background: var(--ink-300);
+}
+
+.errorDetails {
+  margin-top: var(--space-6);
+  text-align: left;
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  background: var(--ink-50);
+}
+
+.errorDetails summary {
+  cursor: pointer;
+  font-weight: var(--weight-medium);
+  color: var(--ink-700);
+  margin-bottom: var(--space-3);
+}
+
+.errorStack {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--danger-600);
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 200px;
+  overflow-y: auto;
+}

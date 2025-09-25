@@ -1,0 +1,27 @@
+.wrap {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.title {
+  font-size: clamp(4rem, 8vw, 8rem);
+  color: var(--brand-700);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+}
+.p {
+  color: var(--ink-700);
+  margin-bottom: var(--space-6);
+}
+.btn {
+  background: var(--brand-700);
+  color: var(--white);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+.btn:hover {
+  background: var(--brand-500);
+}

@@ -1,0 +1,102 @@
+.ctaSection {
+  padding: var(--space-12) 0;
+  background: var(--brand-50);
+  text-align: center;
+}
+.ctaSection.primary {
+  background: var(--brand-700);
+  color: var(--white);
+}
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.title {
+  font-size: var(--text-2xl);
+  color: var(--ink-900);
+  margin-bottom: var(--space-4);
+}
+.primary .title {
+  color: var(--white);
+}
+.description {
+  font-size: var(--text-lg);
+  color: var(--ink-700);
+  margin-bottom: var(--space-6);
+  line-height: var(--leading-normal);
+}
+.primary .description {
+  color: var(--brand-100);
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+}
+.primaryButton {
+  background: var(--brand-700);
+  color: var(--white);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-base);
+  transition: background-color var(--transition-fast);
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+}
+.primary .primaryButton {
+  background: var(--white);
+  color: var(--brand-700);
+}
+.primaryButton:hover {
+  background: var(--brand-500);
+  color: var(--white);
+}
+.primary .primaryButton:hover {
+  background: var(--brand-100);
+  color: var(--brand-700);
+}
+.secondaryButton {
+  background: transparent;
+  color: var(--brand-700);
+  padding: var(--space-4) var(--space-6);
+  border: 2px solid var(--brand-700);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-base);
+  transition: all var(--transition-fast);
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+}
+.primary .secondaryButton {
+  color: var(--white);
+  border-color: var(--white);
+}
+.secondaryButton:hover {
+  background: var(--brand-700);
+  color: var(--white);
+}
+.primary .secondaryButton:hover {
+  background: var(--white);
+  color: var(--brand-700);
+}
+@media (min-width: 640px) {
+  .actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+@media (min-width: 768px) {
+  .title {
+    font-size: var(--text-3xl);
+  }
+}

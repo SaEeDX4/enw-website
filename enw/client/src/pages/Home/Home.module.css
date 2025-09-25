@@ -1,0 +1,104 @@
+.home {
+  min-height: 60vh;
+}
+.hero {
+  padding: var(--space-12) 0 var(--space-16);
+  text-align: center;
+}
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.heroTitle {
+  font-size: var(--text-3xl);
+  color: var(--ink-900);
+  margin-bottom: var(--space-6);
+  line-height: var(--leading-tight);
+}
+.heroDescription {
+  font-size: var(--text-lg);
+  color: var(--ink-700);
+  margin-bottom: var(--space-8);
+  line-height: var(--leading-loose);
+}
+.heroActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+}
+.primaryButton {
+  background: var(--brand-700);
+  color: var(--white);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: var(--weight-semibold);
+  min-height: 48px;
+  min-width: 160px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.primaryButton:hover {
+  background: var(--brand-500);
+  color: var(--white);
+}
+.secondaryButton {
+  background: transparent;
+  color: var(--brand-700);
+  padding: var(--space-4) var(--space-6);
+  border: 2px solid var(--brand-700);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: var(--weight-semibold);
+  min-height: 48px;
+  min-width: 160px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.secondaryButton:hover {
+  background: var(--brand-700);
+  color: var(--white);
+}
+.quickInfo {
+  padding: var(--space-12) 0;
+  background: var(--ink-50);
+}
+.infoGrid {
+  display: grid;
+  gap: var(--space-6);
+}
+.infoCard {
+  background: var(--white);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.infoCard h3 {
+  color: var(--brand-700);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-4);
+}
+@media (min-width: 640px) {
+  .heroActions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: var(--text-4xl);
+  }
+  .infoGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+}
+@media (min-width: 1024px) {
+  .hero {
+    padding: var(--space-16) 0 var(--space-20);
+  }
+}

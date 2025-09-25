@@ -1,0 +1,133 @@
+.header {
+  background: var(--white);
+  border-bottom: 1px solid var(--ink-100);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  box-shadow: var(--shadow-sm);
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+.brand {
+  text-decoration: none;
+  color: var(--ink-900);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+}
+.desktop {
+  display: none;
+}
+.list {
+  display: flex;
+  list-style: none;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+}
+.link {
+  text-decoration: none;
+  color: var(--ink-700);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-sm);
+  padding: var(--space-2) 0;
+}
+.link[aria-current="page"] {
+  color: var(--brand-700);
+  border-bottom: 2px solid var(--brand-700);
+}
+
+.ctaWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.cta {
+  background: var(--brand-700);
+  color: var(--white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: var(--weight-medium);
+  font-size: var(--text-sm);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.cta:hover {
+  background: var(--brand-500);
+  color: var(--white);
+}
+
+.menuBtn {
+  background: none;
+  border: none;
+  padding: var(--space-2);
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.ham {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ham span {
+  width: 20px;
+  height: 2px;
+  background: var(--ink-700);
+}
+
+.mobile {
+  border-top: 1px solid var(--ink-100);
+  padding: var(--space-4) 0;
+  background: var(--white);
+}
+.mobileList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mobileLink {
+  display: block;
+  padding: var(--space-3) 0;
+  text-decoration: none;
+  color: var(--ink-700);
+  border-bottom: 1px solid var(--ink-100);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.mobileLink:hover {
+  color: var(--brand-700);
+}
+.mobileLink[aria-current="page"] {
+  color: var(--brand-700);
+  font-weight: var(--weight-semibold);
+}
+.mobileCta {
+  display: block;
+  background: var(--brand-700);
+  color: var(--white);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  text-align: center;
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .desktop {
+    display: block;
+  }
+  .menuBtn,
+  .mobile {
+    display: none;
+  }
+  .list {
+    gap: var(--space-8);
+  }
+}

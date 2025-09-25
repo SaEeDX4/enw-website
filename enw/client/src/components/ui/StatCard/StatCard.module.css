@@ -1,0 +1,23 @@
+.card {
+  text-align: center;
+  padding: var(--space-6);
+}
+.number {
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  color: var(--brand-700);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+.label {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--ink-900);
+  margin-bottom: var(--space-3);
+}
+.description {
+  font-size: var(--text-sm);
+  color: var(--ink-700);
+  line-height: var(--leading-normal);
+  margin: 0;
+}

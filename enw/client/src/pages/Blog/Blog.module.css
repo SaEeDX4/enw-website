@@ -1,0 +1,240 @@
+.blogSection {
+  padding: var(--space-12) 0;
+}
+
+.blogLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+.loading,
+.error {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.spinner {
+  font-size: var(--text-lg);
+  color: var(--ink-500);
+}
+
+.error button {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-5);
+  background: var(--brand-700);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+  display: none;
+}
+
+.widget {
+  margin-bottom: var(--space-8);
+}
+
+.widget h3 {
+  color: var(--ink-900);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-lg);
+}
+
+.categoryList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categoryList button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-2) 0;
+  background: none;
+  border: none;
+  color: var(--ink-700);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.categoryList button:hover,
+.categoryList button.active {
+  color: var(--brand-700);
+}
+
+.tagCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tag {
+  padding: var(--space-1) var(--space-3);
+  background: var(--ink-100);
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  color: var(--ink-700);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tag:hover,
+.tag.active {
+  background: var(--brand-700);
+  color: var(--white);
+  border-color: var(--brand-700);
+}
+
+/* Posts Grid */
+.postsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.postCard {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform var(--transition-fast);
+}
+
+.postCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.postImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.postContent {
+  padding: var(--space-5);
+}
+
+.postMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--ink-500);
+  margin-bottom: var(--space-3);
+}
+
+.category {
+  color: var(--brand-700);
+}
+
+.postTitle {
+  margin-bottom: var(--space-3);
+}
+
+.postTitle a {
+  color: var(--ink-900);
+  text-decoration: none;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+
+.postTitle a:hover {
+  color: var(--brand-700);
+}
+
+.postExcerpt {
+  color: var(--ink-700);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-4);
+}
+
+.readMore {
+  color: var(--brand-700);
+  text-decoration: none;
+  font-weight: var(--weight-medium);
+  font-size: var(--text-sm);
+}
+
+.readMore:hover {
+  color: var(--brand-500);
+}
+
+.noPosts {
+  text-align: center;
+  color: var(--ink-500);
+  font-size: var(--text-lg);
+  padding: var(--space-12) 0;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.pageButton {
+  padding: var(--space-2) var(--space-4);
+  background: var(--white);
+  border: 2px solid var(--ink-300);
+  border-radius: var(--radius);
+  color: var(--ink-700);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pageButton:hover:not(:disabled) {
+  border-color: var(--brand-700);
+  color: var(--brand-700);
+}
+
+.pageButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  color: var(--ink-700);
+  font-size: var(--text-sm);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .postsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .blogLayout {
+    grid-template-columns: 300px 1fr;
+  }
+
+  .sidebar {
+    display: block;
+  }
+
+  .postsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .postsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

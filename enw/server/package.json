@@ -1,0 +1,47 @@
+{
+  "name": "enw-server",
+  "version": "1.0.0",
+  "description": "ENW Backend API Server",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --watch src --ext js --exec node src/server.js",
+    "db:seed": "node src/seeds/seed.js",
+    "db:seed:blog": "node src/seeds/blogSeed.js",
+    "db:seed:all": "npm run db:seed && npm run db:seed:blog",
+    "db:check-indexes": "node scripts/check-indexes.mjs",
+    "db:find-vol-dups": "node scripts/find-volunteer-duplicate-emails.mjs",
+    "db:rebuild-vol-email-index": "node scripts/rebuild-volunteer-email-index.mjs",
+    "test:vol-unique": "node scripts/test-vol-unique.mjs",
+    "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs --runInBand",
+    "test:watch": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs --watch --runInBand",
+    "test:coverage": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs --coverage --runInBand",
+    "test:integration": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs --testPathPattern=integration --runInBand"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dompurify": "^3.2.7",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "jsdom": "^27.0.0",
+    "marked": "^16.3.0",
+    "mongoose": "^8.18.1",
+    "morgan": "^1.10.0",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@jest/globals": "^29.7.0",
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.2.1",
+    "nodemon": "^3.0.2",
+    "supertest": "^7.1.4"
+  }
+}
