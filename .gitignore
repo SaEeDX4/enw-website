@@ -6,3 +6,7 @@ build/
 !.env.example
 .vscode/
 *.log
+# --- enw-website additions ---
+coverage/
+desktop.ini
+Thumbs.db
